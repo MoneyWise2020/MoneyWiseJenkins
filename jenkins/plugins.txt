@@ -44,5 +44,4 @@ github-oauth:0.33
 github-issues:1.2.4
 jquery-detached:1.2.1
 icon-shim:2.0.3
-github-pullrequest:0.2.8
 github-checks:1.0.5

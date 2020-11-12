@@ -1,24 +1,18 @@
 <project>
 <actions/>
-<description>
-This pipeline configuration will build and deploy a running container with the MoneyWise2020 API application.
-</description>
+<description> This pipeline configuration will build and deploy a running container with the MoneyWise2020 API application. </description>
 <keepDependencies>false</keepDependencies>
 <properties>
-<com.coravy.hudson.plugins.github.GithubProjectProperty plugin="github@1.29.5">
-<projectUrl>
-https://github.com/MoneyWise2020/MoneyWise2020.git/
-</projectUrl>
+<com.coravy.hudson.plugins.github.GithubProjectProperty plugin="github@1.32.0">
+<projectUrl>https://github.com/MoneyWise2020/MoneyWise2020.git/</projectUrl>
 <displayName/>
 </com.coravy.hudson.plugins.github.GithubProjectProperty>
 </properties>
-<scm class="hudson.plugins.git.GitSCM" plugin="git@4.2.2">
+<scm class="hudson.plugins.git.GitSCM" plugin="git@4.4.5">
 <configVersion>2</configVersion>
 <userRemoteConfigs>
 <hudson.plugins.git.UserRemoteConfig>
-<url>
-https://github.com/MoneyWise2020/MoneyWise2020.git
-</url>
+<url>https://github.com/MoneyWise2020/MoneyWise2020.git</url>
 </hudson.plugins.git.UserRemoteConfig>
 </userRemoteConfigs>
 <branches>
@@ -35,7 +29,7 @@ https://github.com/MoneyWise2020/MoneyWise2020.git
 <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
 <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
 <triggers>
-<com.cloudbees.jenkins.GitHubPushTrigger plugin="github@1.29.5">
+<com.cloudbees.jenkins.GitHubPushTrigger plugin="github@1.32.0">
 <spec/>
 </com.cloudbees.jenkins.GitHubPushTrigger>
 <hudson.triggers.SCMTrigger>
@@ -47,6 +41,7 @@ https://github.com/MoneyWise2020/MoneyWise2020.git
 <builders>
 <hudson.tasks.Shell>
 <command>echo "Starting run"; cd backend; sudo chmod 777 run_jenkins.sh; sudo ./run_jenkins.sh;</command>
+<configuredLocalRules/>
 </hudson.tasks.Shell>
 </builders>
 <publishers/>
