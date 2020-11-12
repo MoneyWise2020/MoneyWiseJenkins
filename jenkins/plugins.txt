@@ -20,8 +20,6 @@ structs:1.20
 display-url-api:2.3.3
 scm-api:2.6.4
 cloudbees-folder:6.14
-workflow-job:2.40
-workflow-support:3.5
 font-awesome-api:5.15.1-1
 token-macro:2.12
 workflow-step-api:2.23
