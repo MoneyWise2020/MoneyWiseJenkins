@@ -44,13 +44,13 @@
 <configuredLocalRules/>
 </hudson.tasks.Shell>
 <hudson.tasks.Shell>
-<command>echo "Starting UI build"; cd ui; yarn test;</command>
+<command>echo "Starting UI build"; cd ui; yarn install; CI=true yarn test --ci --coverage --reporters=default --reporters=jest-junit;</command>
 <configuredLocalRules/>
 </hudson.tasks.Shell>
 </builders>
 <publishers>
 <hudson.tasks.junit.JUnitResultArchiver plugin="junit@1.37">
-<testResults>xmlrunner/*.xml</testResults>
+<testResults>backend/xmlrunner/*.xml</testResults>
 <keepLongStdio>false</keepLongStdio>
 <healthScaleFactor>1.0</healthScaleFactor>
 <allowEmptyResults>false</allowEmptyResults>
