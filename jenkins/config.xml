@@ -1,4 +1,3 @@
-This XML file does not appear to have any style information associated with it. The document tree is shown below.
 <project>
 <actions/>
 <description> This pipeline configuration will build and deploy a running container with the MoneyWise2020 API application. </description>
@@ -41,7 +40,7 @@ This XML file does not appear to have any style information associated with it. 
 <concurrentBuild>false</concurrentBuild>
 <builders>
 <hudson.tasks.Shell>
-<command>echo "Starting backend build"; cd backend; pip3 install requirements.txt; python manage.py test; sudo chmod 777 run_jenkins.sh; sudo ./run_jenkins.sh;</command>
+<command>echo "Starting backend build"; cd backend; pip3.8 install -r requirements.txt; export DJANGO_SECRET_KEY="unittest-env"; export DEBUG=False; python3.8 manage.py test; sudo chmod 777 run_jenkins.sh; sudo ./run_jenkins.sh;</command>
 <configuredLocalRules/>
 </hudson.tasks.Shell>
 <hudson.tasks.Shell>

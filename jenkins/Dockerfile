@@ -15,9 +15,11 @@ RUN sudo apt install -y yarn
 RUN sudo apt install -y build-essential zlib1g-dev libncurses5-dev libgdbm-dev libnss3-dev libssl-dev libreadline-dev libffi-dev wget
 RUN sudo curl -O https://www.python.org/ftp/python/3.8.6/Python-3.8.6.tar.xz
 RUN sudo tar -xf Python-3.8.6.tar.xz
-RUN cd Python-3.8.6 && sudo ./configure --enable-optimizations
+RUN cd Python-3.8.6 && sudo ./configure --enable-optimizations --enable-loadable-sqlite-extensions
 RUN cd Python-3.8.6 && sudo make
 RUN cd Python-3.8.6 && sudo make altinstall
+RUN sudo curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
+RUN sudo python3.8 get-pip.py
 RUN /usr/local/bin/install-plugins.sh $(cat /usr/share/jenkins/plugins.txt)
 
 
