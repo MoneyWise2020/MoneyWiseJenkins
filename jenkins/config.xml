@@ -50,10 +50,10 @@
 </builders>
 <publishers>
 <hudson.tasks.junit.JUnitResultArchiver plugin="junit@1.37">
-<testResults>backend/xmlrunner/*.xml</testResults>
+<testResults>backend/xmlrunner/*,xml,ui/junit.xml</testResults>
 <keepLongStdio>false</keepLongStdio>
 <healthScaleFactor>1.0</healthScaleFactor>
-<allowEmptyResults>false</allowEmptyResults>
+<allowEmptyResults>true</allowEmptyResults>
 </hudson.tasks.junit.JUnitResultArchiver>
 </publishers>
 <buildWrappers/>
