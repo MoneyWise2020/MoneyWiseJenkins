@@ -1,3 +1,4 @@
+This XML file does not appear to have any style information associated with it. The document tree is shown below.
 <project>
 <actions/>
 <description> This pipeline configuration will build and deploy a running container with the MoneyWise2020 API application. </description>
@@ -17,7 +18,7 @@
 </userRemoteConfigs>
 <branches>
 <hudson.plugins.git.BranchSpec>
-<name>*/main</name>
+<name>*/testReporting</name>
 </hudson.plugins.git.BranchSpec>
 </branches>
 <doGenerateSubmoduleConfigurations>false</doGenerateSubmoduleConfigurations>
@@ -40,10 +41,21 @@
 <concurrentBuild>false</concurrentBuild>
 <builders>
 <hudson.tasks.Shell>
-<command>echo "Starting run"; cd backend; sudo chmod 777 run_jenkins.sh; sudo ./run_jenkins.sh;</command>
+<command>echo "Starting backend build"; cd backend; pip3 install requirements.txt; python manage.py test; sudo chmod 777 run_jenkins.sh; sudo ./run_jenkins.sh;</command>
+<configuredLocalRules/>
+</hudson.tasks.Shell>
+<hudson.tasks.Shell>
+<command>echo "Starting UI build"; cd ui; yarn test;</command>
 <configuredLocalRules/>
 </hudson.tasks.Shell>
 </builders>
-<publishers/>
+<publishers>
+<hudson.tasks.junit.JUnitResultArchiver plugin="junit@1.37">
+<testResults>xmlrunner/*.xml</testResults>
+<keepLongStdio>false</keepLongStdio>
+<healthScaleFactor>1.0</healthScaleFactor>
+<allowEmptyResults>false</allowEmptyResults>
+</hudson.tasks.junit.JUnitResultArchiver>
+</publishers>
 <buildWrappers/>
 </project>
