@@ -17,7 +17,7 @@
 </userRemoteConfigs>
 <branches>
 <hudson.plugins.git.BranchSpec>
-<name>*/testReporting</name>
+<name>*/main</name>
 </hudson.plugins.git.BranchSpec>
 </branches>
 <doGenerateSubmoduleConfigurations>false</doGenerateSubmoduleConfigurations>
@@ -40,7 +40,7 @@
 <concurrentBuild>false</concurrentBuild>
 <builders>
 <hudson.tasks.Shell>
-<command>echo "Starting backend build"; cd backend; pip3.8 install -r requirements.txt; export DJANGO_SECRET_KEY="unittest-env"; export DEBUG=False; python3.8 manage.py test;</command>
+<command>echo "Starting backend build"; cd backend; pip3.8 install -r requirements.txt; DJANGO_SECRET_KEY="unittest" CORS_ORIGIN_WHITELIST_CSV="" DEBUG="" python3.8 manage.py test;</command>
 <configuredLocalRules/>
 </hudson.tasks.Shell>
 <hudson.tasks.Shell>
@@ -48,13 +48,13 @@
 <configuredLocalRules/>
 </hudson.tasks.Shell>
 <hudson.tasks.Shell>
-<command>cp /usr/share/jenkins/backend-variables.env .; docker-compose -f docker-compose.yml -f docker-compose.override.prod.yml up -d;</command>
+<command>cp /usr/share/jenkins/backend-variables.env . set +x . ./backend-variables.env set -x sudo -E API_BASE_URL="$API_BASE_URL" docker-compose -f "docker-compose.yml" -f "docker-compose.override.prod.yml" up -d --build;</command>
 <configuredLocalRules/>
 </hudson.tasks.Shell>
 </builders>
 <publishers>
 <hudson.tasks.junit.JUnitResultArchiver plugin="junit@1.37">
-<testResults>backend/xmlrunner/*,xml,ui/junit.xml</testResults>
+<testResults>backend/xmlrunner/*.xml,ui/junit.xml</testResults>
 <keepLongStdio>false</keepLongStdio>
 <healthScaleFactor>1.0</healthScaleFactor>
 <allowEmptyResults>true</allowEmptyResults>
