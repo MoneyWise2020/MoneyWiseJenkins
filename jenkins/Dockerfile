@@ -8,6 +8,7 @@ USER jenkins
 
 COPY config.xml /usr/share/jenkins/ref/jobs/MoneyWiseCICD/config.xml
 COPY plugins.txt /usr/share/jenkins/plugins.txt
+COPY backend-variables.env /usr/share/jenkins/backend-variables.env
 RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
 RUN echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
 RUN sudo apt update
@@ -15,7 +16,7 @@ RUN sudo curl -sL https://deb.nodesource.com/setup_10.x -o nodesource_setup.sh
 RUN sudo bash nodesource_setup.sh
 RUN sudo apt-get install -y nodejs
 RUN sudo apt install -y yarn
-RUN sudo apt install -y build-essential zlib1g-dev libncurses5-dev libgdbm-dev libnss3-dev libssl-dev libreadline-dev libffi-dev libsqlite3-dev wget
+RUN sudo apt install -y build-essential zlib1g-dev libncurses5-dev libgdbm-dev libnss3-dev libssl-dev libreadline-dev libffi-dev libsqlite3-dev docker-compose wget
 RUN sudo curl -O https://www.python.org/ftp/python/3.8.6/Python-3.8.6.tar.xz
 RUN sudo tar -xf Python-3.8.6.tar.xz
 RUN cd Python-3.8.6 && sudo ./configure --enable-optimizations --enable-loadable-sqlite-extensions
