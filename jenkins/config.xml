@@ -40,11 +40,15 @@
 <concurrentBuild>false</concurrentBuild>
 <builders>
 <hudson.tasks.Shell>
-<command>echo "Starting backend build"; cd backend; pip3.8 install -r requirements.txt; export DJANGO_SECRET_KEY="unittest-env"; export DEBUG=False; python3.8 manage.py test; sudo chmod 777 run_jenkins.sh; sudo ./run_jenkins.sh;</command>
+<command>echo "Starting backend build"; cd backend; pip3.8 install -r requirements.txt; export DJANGO_SECRET_KEY="unittest-env"; export DEBUG=False; python3.8 manage.py test;</command>
 <configuredLocalRules/>
 </hudson.tasks.Shell>
 <hudson.tasks.Shell>
 <command>echo "Starting UI build"; cd ui; yarn install; CI=true yarn test --ci --coverage --reporters=default --reporters=jest-junit;</command>
+<configuredLocalRules/>
+</hudson.tasks.Shell>
+<hudson.tasks.Shell>
+<command>cp /usr/share/jenkins/backend-variables.env .; docker-compose -f docker-compose.yml -f docker-compose.override.prod.yml up -d;</command>
 <configuredLocalRules/>
 </hudson.tasks.Shell>
 </builders>
