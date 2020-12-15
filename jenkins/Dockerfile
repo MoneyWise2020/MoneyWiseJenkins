@@ -6,7 +6,11 @@ RUN echo "jenkins ALL=NOPASSWD: ALL" >> /etc/sudoers
 
 USER jenkins
 
-COPY config.xml /usr/share/jenkins/ref/jobs/MoneyWiseCICD/config.xml
+COPY "MoneyWise - Unit Test (Previously responsible of all MoneyWiseCICD)/config.xml" "/usr/share/jenkins/MoneyWise - Unit Test (Previously responsible of all MoneyWiseCICD)/config.xml"
+COPY "MoneyWise - BDD Tests/config.xml" "/usr/share/jenkins/MoneyWise - BDD Tests/config.xml"
+COPY "MoneyWise - Deploy/config.xml" "/usr/share/jenkins/MoneyWise - Deploy/config.xml"
+COPY "MoneyWise - Health Check/config.xml" "/usr/share/jenkins/MoneyWise - Health Check/config.xml"
+COPY "MoneyWise - Cleanup/config.xml" "/usr/share/jenkins/MoneyWise - Cleanup/config.xml"
 COPY plugins.txt /usr/share/jenkins/plugins.txt
 COPY backend-variables.env /usr/share/jenkins/backend-variables.env
 RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
